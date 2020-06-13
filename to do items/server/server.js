@@ -39,6 +39,9 @@ mongo.MongoClient.connect(url, connectionOptions, (err, client) => {
     var titansDb = client.db("titans_db");
 
     app.post('/todo/login', (req, res) => {
+        var log = {
+            "good": 0
+        }
         titansDb.collection("authentication").findOne(req.body, (err, result) => {
             if (err) {
                 res.status(500).send();
@@ -48,7 +51,7 @@ mongo.MongoClient.connect(url, connectionOptions, (err, client) => {
                 res.status(200).send(result);
                 u.Username = result.Username;
             } else {
-                res.status(401).send();
+                res.status(200).send(log);
             }
 
         })

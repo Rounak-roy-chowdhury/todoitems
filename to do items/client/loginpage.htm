@@ -97,6 +97,7 @@
                         if (response.status == 200) {
                             promiseofdata.then(jsondata => {
                                 authentication = jsondata;
+                                console.log(authentication)
                                 render();
                             })
                         }
@@ -107,13 +108,15 @@
 
 
         function render() {
-            if (authentication.Username != undefined && authentication.Password != undefined) {
-                console.log("1")
+            bool = false;
+            if (authentication.Username != undefined && authentication.Password != undefined && bool == false) {
+                bool = true;
                 window.location.href = "todo.htm"
-            } else if (authentication.Username === undefined && authentication.Password === undefined) {
-                console.log("2")
+            } else if (authentication.good == 0 && bool == false) {
                 alert("Authentication Failure. Please try again with correct credentials.");
+
             }
+
         }
 
 
